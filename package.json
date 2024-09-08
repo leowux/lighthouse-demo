@@ -16,8 +16,8 @@
   "dependencies": {
     "antd": "3.26.20",
     "compression": "^1.7.4",
+    "dayjs": "^1.11.13",
     "express": "^4.19.2",
-    "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -8,13 +8,13 @@ import image6 from "@/assets/images/image6.jpg";
 import image7 from "@/assets/images/image7.jpg";
 import image8 from "@/assets/images/image8.jpg";
 import Button from "antd/es/button";
-import * as moment from "moment";
+import * as dayjs from "dayjs";
 import "./App.less";
 const expensiveComputation = () => {
   return 3010936384;
 };
 const App: React.FC = () => {
-  const time = moment().format("MMMM Do YYYY, h:mm:ss a");
+  const time = dayjs().format("MMMM Do YYYY, h:mm:ss a");
   const num = expensiveComputation();
   return (
     <div className="app">
