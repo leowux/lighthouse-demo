@@ -1,6 +1,23 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+class ModifyHtmlLinksPlugin {
+  apply(compiler) {
+    compiler.hooks.compilation.tap("ModifyHtmlLinksPlugin", (compilation) => {
+      HtmlWebpackPlugin.getHooks(compilation).beforeEmit.tapAsync("ModifyHtmlLinksPlugin", (data, cb) => {
+        // 这里修改 HTML 文件的内容
+        data.html = data.html.replace(
+          /<link href="(.+?)" rel="stylesheet">/g,
+          `<link rel="preload" as="style" href="$1" onload="this.onload=null;this.rel='stylesheet'">`
+        );
+        // 调用回调函数继续编译
+        cb(null, data);
+      });
+    });
+  }
+}
+
 module.exports = {
   entry: path.resolve(__dirname, "../src/index.tsx"),
   output: {
@@ -68,6 +85,7 @@ module.exports = {
       // 将 css 单独提测出来放在 assets/css 下
       filename: "assets/css/[name].css",
     }),
+    new ModifyHtmlLinksPlugin(),
   ],
   optimization: {
     splitChunks: {
@@ -77,18 +95,20 @@ module.exports = {
           name: "vendors",
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
+          enforce: true,
+        },
+        react: {
+          name: "react",
+          test: /[\\/]node_modules[\\/]react[\\/]/,
+          enforce: true,
+        },
+        reactDom: {
+          name: "react-dom",
+          test: /[\\/]node_modules[\\/]react-dom[\\/]/,
         },
         antd: {
           name: "antd",
           test: /[\\/]node_modules[\\/]antd[\\/]/,
-        },
-        moment: {
-          name: "moment",
-          test: /[\\/]node_modules[\\/]moment[\\/]/,
-        },
-        antdIcon: {
-          test: /[\\/]node_modules[\\/]@ant-design[\\/]/,
-          name: "antd-icon",
         },
       },
     },
