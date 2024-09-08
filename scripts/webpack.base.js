@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   entry: path.resolve(__dirname, "../src/index.tsx"),
   output: {
@@ -26,8 +27,15 @@ module.exports = {
         },
       },
       {
-        test: /\.less$/,
-        use: ["style-loader", "css-loader", "postcss-loader", "less-loader"],
+        test: /\.(css|less)$/,
+        use: [
+          // 使用 MiniCssExtractPlugin.loader 代替 style-loader
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "less-loader",
+        ],
+        // 排除 node_modules 目录
         exclude: /node_modules/,
       },
       {
@@ -61,5 +69,33 @@ module.exports = {
       template: path.resolve(__dirname, "../index.html"),
       scriptLoading: "defer",
     }),
+    new MiniCssExtractPlugin({
+      // 将 css 单独提测出来放在 assets/css 下
+      filename: "assets/css/[name].css",
+    }),
   ],
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendors: {
+          name: "vendors",
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+        },
+        antd: {
+          name: "antd",
+          test: /[\\/]node_modules[\\/]antd[\\/]/,
+        },
+        moment: {
+          name: "moment",
+          test: /[\\/]node_modules[\\/]moment[\\/]/,
+        },
+        antdIcon: {
+          test: /[\\/]node_modules[\\/]@ant-design[\\/]/,
+          name: "antd-icon",
+        },
+      },
+    },
+  },
 };
