@@ -31,35 +31,35 @@ const App: React.FC = () => {
       <div>time: {time}</div>
       <div>
         <p>Hello Squirrel!</p>
-        <img width={300} src={image1} alt="" />
+        <img width={300} height={200} src={image1} alt="" />
       </div>
       <div>
         <p>Hello Squirrel!</p>
-        <img width={300} src={image2} alt="" />
+        <img width={300} height={200} src={image2} alt="" />
       </div>
       <div>
         <p>Hello Squirrel!</p>
-        <img width={300} src={image3} alt="" />
+        <img width={300} height={200} src={image3} alt="" />
       </div>
       <div>
         <p>Hello Squirrel!</p>
-        <img width={300} src={image4} alt="" />
+        <img width={300} height={200} src={image4} alt="" />
       </div>
       <div>
         <p>Hello Squirrel!</p>
-        <img width={300} src={image5} alt="" />
+        <img width={300} height={200} src={image5} alt="" />
       </div>
       <div>
         <p>Hello Squirrel!</p>
-        <img width={300} src={image6} alt="" />
+        <img width={300} height={200} src={image6} alt="" />
       </div>
       <div>
         <p>Hello Squirrel!</p>
-        <img width={300} src={image7} alt="" />
+        <img width={300} height={200} src={image7} alt="" />
       </div>
       <div>
         <p>Hello Squirrel!</p>
-        <img width={300} src={image8} alt="" />
+        <img width={300} height={200} src={image8} alt="" />
       </div>
     </div>
   );
