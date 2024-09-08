@@ -7,7 +7,7 @@ import image5 from "@/assets/images/image5.jpg";
 import image6 from "@/assets/images/image6.jpg";
 import image7 from "@/assets/images/image7.jpg";
 import image8 from "@/assets/images/image8.jpg";
-import { Button } from "antd";
+import Button from "antd/es/button";
 import * as moment from "moment";
 import "./App.less";
 const expensiveComputation = () => {
@@ -18,7 +18,7 @@ const App: React.FC = () => {
   const num = expensiveComputation();
   return (
     <div className="app">
-      <Button type="primary">Button</Button>
+      <Button type="primary" icon="search">Button</Button>
       <div>num: {num}</div>
       <div>time: {time}</div>
       <div>
