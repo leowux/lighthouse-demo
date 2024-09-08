@@ -11,15 +11,7 @@ import { Button } from "antd";
 import * as moment from "moment";
 import "./App.less";
 const expensiveComputation = () => {
-  let num = 0;
-  for (let i = 0; i < 1444; i++) {
-    for (let j = 0; j < 1444; j++) {
-      for (let k = 0; k < 1444; k++) {
-        num++;
-      }
-    }
-  }
-  return num;
+  return 3010936384;
 };
 const App: React.FC = () => {
   const time = moment().format("MMMM Do YYYY, h:mm:ss a");
